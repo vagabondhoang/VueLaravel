@@ -14,12 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-
-        // return response()->json([
-        // 		'products' => $products
-        // 	]);
-        return view('admin.product');     
+       return view('admin.product');     
     }
 
     /**
@@ -40,7 +35,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create($request->all());
     }
 
     /**
@@ -54,7 +49,7 @@ class ProductController extends Controller
         //
     }
 
-    /**
+    /**s
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -62,7 +57,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+       return \App\Product::findOrfail($id);
     }
 
     /**
@@ -74,7 +69,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Product::findOrfail($id)->update($request->all());
     }
 
     /**
@@ -85,6 +80,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        
+        return Product::destroy($id);
     }
 }
